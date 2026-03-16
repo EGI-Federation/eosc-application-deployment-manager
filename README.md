@@ -1,5 +1,5 @@
 
-# EOSC Data Transfer Service
+# EOSC Application Deployment Manager
 
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?label=License)
 ![Release](https://img.shields.io/github/v/release/EGI-Federation/eosc-application-deployment-manager?label=Release)
@@ -18,7 +18,7 @@ project, funded by the European Commission.
 [EOSC Future](https://eoscfuture.eu), while the [EOSC Beyond](https://www.eosc-beyond.eu)
 project continues this development to deliver the next generation of EOSC core services.
 
-## Application Deployment Manager
+## API specification
 
 This is the [REST](https://restfulapi.net) API specification for the Application Deployment Manager (ADM)
 core service of future EOSC nodes. This API can be used to:
