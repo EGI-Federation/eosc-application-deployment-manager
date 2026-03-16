@@ -156,11 +156,11 @@ components:
           type: string
           format: url
           description: URL to the interactive UI of the EOSC node where this environment was allocated
-        awmAPI:
+        admAPI:
           type: string
           format: url
           description: |-
-            Base URL for the AWM API of the EOSC node where this environment was allocated, 
+            Base URL for the ADM API of the EOSC node where this environment was allocated, 
             or null for environments private to the calling user that are accessed via 
             explicit credentials
     Allocation:
@@ -207,7 +207,6 @@ components:
       description: What to deploy
       required:
         - id
-        - version
         - infoLink
       properties:
         kind:
@@ -219,6 +218,7 @@ components:
         version:
           type: string
           description: The specific version of this blueprint version
+          default: latest
         infoLink:
           type: string
           format: url
@@ -465,7 +465,7 @@ paths:
           default: 100
       - name: allNodes
         in: query
-        required: true
+        required: false
         schema:
           type: boolean
           default: false
@@ -476,6 +476,57 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PageOfAllocations"
+        400:
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        403:
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        419:
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        503:
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations
+
+    post:
+      summary: Record an environment of the user
+      operationId: recordAllocation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Allocation"
+        required: true
+      responses:
+        201:
+          description: Recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllocationId"
         400:
           description: Invalid parameters or configuration
           content:
@@ -570,6 +621,126 @@ paths:
       tags:
         - Allocations
 
+    put:
+      summary: Update existing environment of the user
+      operationId: updateAllocation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Allocation"
+        required: true
+      responses:
+        200:
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllocationInfo"
+        400:
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        403:
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        409:
+          description: In use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        419:
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        503:
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations
+
+    delete:
+      summary: Remove existing environment of the user
+      operationId: deleteAllocation
+      responses:
+        200:
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        400:
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        403:
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        409:
+          description: In use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        419:
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        503:
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations 
+
   /tools:
     get:
       summary: List all tool blueprints
@@ -592,27 +763,27 @@ paths:
       - name: includePublished
         description: Return published blueprints
         in: query
-        required: true
+        required: false
         schema:
           type: boolean
           default: true
       - name: includePersonal
         description: Return blueprints private to the caller (not  yet published)
         in: query
-        required: true
+        required: false
         schema:
           type: boolean
           default: false
       - name: onlyFavorites
         description: Return only those blueprints that were marked as a favorite by the caller
         in: query
-        required: true
+        required: false
         schema:
           type: boolean
           default: false
       - name: allNodes
         in: query
-        required: true
+        required: false
         schema:
           type: boolean
           default: false
@@ -743,8 +914,8 @@ paths:
           minimum: 1
           default: 100
       - name: allNodes
+        required: false
         in: query
-        required: true
         schema:
           type: boolean
           default: false
