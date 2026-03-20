@@ -1202,7 +1202,7 @@ paths:
         - Service
 info:
   title: EOSC Application Workflow Management API
-  version: 1.0.50
+  version: 1.0.51
   description: Deployment service for European Open Science Cloud nodes
   contact:
     name: EOSC
