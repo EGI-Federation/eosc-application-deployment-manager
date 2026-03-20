@@ -304,6 +304,53 @@ components:
           type: string
           format: url
           description: Endpoint that returns the details of this tool blueprint
+    Quota:
+      type: object
+      title: Quota
+      properties:
+        used:
+          type: number
+          title: Used
+          description: Amount of the resource currently used
+        limit:
+          type: number
+          title: Limit
+          description: Maximum amount of the resource available
+        to_use:
+          type: number
+          title: To Use
+          description: Amount of the resources the user needs to use in order to perform the deployment
+    CloudQuota:
+      type: object
+      required:
+      - cores
+      - memory
+      - instances
+      properties:
+        cores:
+          $ref: '#/components/schemas/Quota'
+          description: CPU cores quota
+        memory:
+          $ref: '#/components/schemas/Quota'
+          description: Memory quota in megabytes
+        gpus:
+          $ref: '#/components/schemas/Quota'
+          description: GPU units quota
+        instances:
+          $ref: '#/components/schemas/Quota'
+          description: Number of instances quota
+        floating_ips:
+          $ref: '#/components/schemas/Quota'
+          description: Number of floating IPs quota
+        security_groups:
+          $ref: '#/components/schemas/Quota'
+          description: Number of security groups quota
+        volumes:
+          $ref: '#/components/schemas/Quota'
+          description: Number of volumes quota
+        volume_storage:
+          $ref: '#/components/schemas/Quota'
+          description: Storage in gigabytes quota for volumes
     Deployment:
       type: object
       required:
@@ -965,6 +1012,17 @@ paths:
       summary: |
         Deploy workload to an environment for which the user has credentials
       operationId: deployWorkload
+      parameters:
+      - name: dryRun
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: DryRun
+          description: |
+            If true, the deployment will not actually be performed, but the request will be validated 
+            and it will only return the ammount of resources needed to deploy the infrastructure.
       requestBody:
         content:
           application/json:
@@ -972,6 +1030,12 @@ paths:
               $ref: "#/components/schemas/Deployment"
         required: true
       responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudQuota'
         202:
           description: Deploying
           content:
