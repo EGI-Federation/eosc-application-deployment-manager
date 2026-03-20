@@ -743,8 +743,8 @@ paths:
           minimum: 1
           default: 100
       - name: allNodes
-        required: false
         in: query
+        required: false
         schema:
           type: boolean
           default: false
