@@ -202,7 +202,7 @@ components:
               type: string
               format: url
               description: Endpoint that returns the details of this allocation
-    ToolId:
+    ApplicationId:
       type: object
       description: What to deploy
       required:
@@ -212,18 +212,18 @@ components:
       properties:
         kind:
           type: string
-          default: ToolId
+          default: ApplicationId
         id:
           type: string
-          description: Unique identifier for this tool blueprint
+          description: Unique identifier for this application blueprint
         version:
           type: string
           description: The specific version of this blueprint version
         infoLink:
           type: string
           format: url
-          description: URL that returns the full details of this tool blueprint version
-    ToolInfo:
+          description: URL that returns the full details of this application blueprint version
+    ApplicationInfo:
       type: object
       required:
         - type
@@ -232,13 +232,13 @@ components:
       properties:
         kind:
           type: string
-          default: ToolInfo
+          default: ApplicationInfo
         id:
           type: string
-          description: Unique identifier for this tool blueprint
+          description: Unique identifier for this application blueprint
         nodeId:
           type: string
-          description: Unique identifier of the EOSC node where this tool blueprint is hosted
+          description: Unique identifier of the EOSC node where this application blueprint is hosted
         type:
           type: string
           enum:
@@ -246,7 +246,7 @@ components:
             - container
         blueprint:
           type: string
-          description: Prescriptive IaC script of the tool's workload
+          description: Prescriptive IaC script of the application's workload
         blueprintType:
           type: string
           enum:
@@ -303,15 +303,15 @@ components:
         self:
           type: string
           format: url
-          description: Endpoint that returns the details of this tool blueprint
+          description: Endpoint that returns the details of this application blueprint
     Deployment:
       type: object
       required:
-        - tool
+        - application
         - allocation
       properties:
-        tool:
-          $ref: "#/components/schemas/ToolId"
+        application:
+          $ref: "#/components/schemas/ApplicationId"
         allocation:
           $ref: "#/components/schemas/AllocationId"
         inputs:
@@ -413,7 +413,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/AllocationInfo"
-    PageOfTools:
+    PageOfApplications:
       allOf:
         - $ref: "#/components/schemas/Page"
         - type: object
@@ -423,7 +423,7 @@ components:
             elements:
               type: array
               items:
-                $ref: "#/components/schemas/ToolInfo"
+                $ref: "#/components/schemas/ApplicationInfo"
     PageOfDeployments:
       allOf:
         - $ref: "#/components/schemas/Page"
@@ -570,10 +570,10 @@ paths:
       tags:
         - Allocations
 
-  /tools:
+  /applications:
     get:
-      summary: List all tool blueprints
-      operationId: listTools
+      summary: List all application blueprints
+      operationId: listApplications
       parameters:
       - name: from
         description: Index of the first element to return
@@ -622,7 +622,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PageOfTools"
+                $ref: "#/components/schemas/PageOfApplications"
         400:
           description: Invalid parameters or configuration
           content:
@@ -656,11 +656,11 @@ paths:
       security:
         - OIDC: []
       tags:
-        - Tools
+        - Applications
 
-  /tool/{toolId}:
+  /application/{applicationId}:
     parameters:
-      - name: toolId
+      - name: applicationId
         in: path
         required: true
         schema:
@@ -673,15 +673,15 @@ paths:
           type: string
 
     get:
-      summary: Get information about a tool blueprint
-      operationId: getTool
+      summary: Get information about an application blueprint
+      operationId: getApplication
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ToolInfo"
+                $ref: "#/components/schemas/ApplicationInfo"
         400:
           description: Invalid parameters or configuration
           content:
@@ -721,7 +721,7 @@ paths:
       security:
         - OIDC: []
       tags:
-        - Tools
+        - Applications
 
   /deployments:
     get:
