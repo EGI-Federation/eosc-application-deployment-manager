@@ -14,9 +14,9 @@ and science-related services. It was designed, delivered, and is contiunously im
 [Horizon Europe](https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/horizon-europe_en)
 project, funded by the European Commission.
 
-[EOSC](https://open-science-cloud.ec.europa.eu/) was initially delivered by the
-[EOSC Future](https://eoscfuture.eu), while the [EOSC Beyond](https://www.eosc-beyond.eu)
-project continues this development to deliver the next generation of EOSC core services.
+EOSC was initially delivered by the [EOSC Future](https://eoscfuture.eu) project and the
+[EOSC Beyond](https://www.eosc-beyond.eu) project continues this development to deliver the
+next generation of EOSC core services.
 
 ## API specification
 
