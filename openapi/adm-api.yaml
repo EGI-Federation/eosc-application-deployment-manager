@@ -82,6 +82,12 @@ components:
         host:
           type: string
           format: url
+        namespace:
+          type: string
+          description: Kubernetes namespace to which the user has access
+        apps_dns:
+          type: string
+          description: DNS name for the applications deployed in this environment
     EoscNodeEnvironment:
       type: object
       required:
