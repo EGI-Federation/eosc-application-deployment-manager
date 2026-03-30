@@ -359,13 +359,13 @@ components:
                 - const: running
                   description: Deployment is currently running.
                 - const: stopped
-                  description: Deployment was stopped in a controlled way.
+                  description: Deployment was stopped or paused.
                 - const: off
                   description: Resources are powered off or inactive.
                 - const: failed
                   description: Deployment finished with an error.
                 - const: configured
-                  description: Configuration was successfully applied.
+                  description: The deployment is running and the configuration was successfully applied.
                 - const: unconfigured
                   description: Configuration was failed to apply, but the deployment is still running.
                 - const: deleting
