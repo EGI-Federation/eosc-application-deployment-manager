@@ -339,16 +339,16 @@ components:
         instances:
           $ref: '#/components/schemas/Quota'
           description: Number of instances quota
-        floating_ips:
+        floatingIps:
           $ref: '#/components/schemas/Quota'
           description: Number of floating IPs quota
-        security_groups:
+        securityGroups:
           $ref: '#/components/schemas/Quota'
           description: Number of security groups quota
         volumes:
           $ref: '#/components/schemas/Quota'
           description: Number of volumes quota
-        volume_storage:
+        volumeStorage:
           $ref: '#/components/schemas/Quota'
           description: Storage in gigabytes quota for volumes
     Deployment:
