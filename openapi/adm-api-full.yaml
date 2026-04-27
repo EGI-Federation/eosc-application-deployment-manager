@@ -316,9 +316,9 @@ components:
           type: number
           title: Limit
           description: Maximum amount of the resource available
-        to_use:
+        needed:
           type: number
-          title: To Use
+          title: Needed
           description: Amount of the resources the user needs to use in order to perform the deployment
     CloudQuota:
       type: object
