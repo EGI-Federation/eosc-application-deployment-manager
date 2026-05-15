@@ -85,9 +85,10 @@ components:
         namespace:
           type: string
           description: Kubernetes namespace to which the user has access
-        apps_dns:
+        appsDns:
           type: string
-          description: DNS name for the applications deployed in this environment
+          format: hostname
+          description: DNS domain where the applications deployed in this environment are accessible, e.g. "apps.mynode.eosc-portal.eu"
     EoscNodeEnvironment:
       type: object
       required:
