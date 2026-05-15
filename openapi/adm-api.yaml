@@ -84,7 +84,7 @@ components:
           format: url
         namespace:
           type: string
-          description: Kubernetes namespace to which the user has access
+          description: Kubernetes namespace where to deploy, caller must have access to it
         appsDns:
           type: string
           format: hostname
