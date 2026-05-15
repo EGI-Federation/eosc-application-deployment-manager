@@ -88,7 +88,8 @@ components:
         appsDns:
           type: string
           format: hostname
-          description: DNS domain where the applications deployed in this environment are accessible, e.g. "apps.mynode.eosc-portal.eu"
+          description: DNS domain where the applications deployed in this environment are accessible
+          example: apps.mynode.eosc-portal.eu
     EoscNodeEnvironment:
       type: object
       required:
