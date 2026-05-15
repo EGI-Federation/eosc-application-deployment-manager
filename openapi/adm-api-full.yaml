@@ -82,6 +82,14 @@ components:
         host:
           type: string
           format: url
+        namespace:
+          type: string
+          description: Kubernetes namespace where to deploy, caller must have access to it
+        appsDns:
+          type: string
+          format: hostname
+          description: DNS domain where the applications deployed in this environment are accessible
+          example: apps.mynode.eosc-portal.eu
     EoscNodeEnvironment:
       type: object
       required:
