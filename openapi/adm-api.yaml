@@ -351,17 +351,27 @@ components:
               description: Unique identifier for this deployment
             status:
               type: string
-              enum:
-                - unknown
-                - pending
-                - running
-                - stopped
-                - off
-                - failed
-                - configured
-                - unconfigured
-                - deleting
-                - deleted
+              oneOf:
+                - const: unknown
+                  description: Status cannot be determined.
+                - const: pending
+                  description: Request accepted, waiting to start.
+                - const: running
+                  description: Deployment is currently running.
+                - const: stopped
+                  description: Deployment was stopped or paused.
+                - const: off
+                  description: Resources are powered off or inactive.
+                - const: failed
+                  description: Deployment finished with an error.
+                - const: configured
+                  description: The deployment is running and the configuration was successfully applied.
+                - const: unconfigured
+                  description: Configuration was failed to apply, but the deployment is still running.
+                - const: deleting
+                  description: Deletion is in progress.
+                - const: deleted
+                  description: Deployment was deleted.
             details:
               type: string
               description: Additional information about the deployment status
