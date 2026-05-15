@@ -535,37 +535,37 @@ paths:
           type: boolean
           default: false
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PageOfAllocations"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -586,37 +586,37 @@ paths:
               $ref: "#/components/schemas/Allocation"
         required: true
       responses:
-        201:
+        '201':
           description: Recorded
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AllocationId"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -639,43 +639,43 @@ paths:
       summary: Retrieve information about an environment available to the user
       operationId: getAllocationInfo
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AllocationInfo"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -696,49 +696,49 @@ paths:
               $ref: "#/components/schemas/Allocation"
         required: true
       responses:
-        200:
+        '200':
           description: Updated
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AllocationInfo"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        409:
+        '409':
           description: In use
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -753,49 +753,49 @@ paths:
       summary: Remove existing environment of the user
       operationId: deleteAllocation
       responses:
-        200:
+        '200':
           description: Deleted
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        409:
+        '409':
           description: In use
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -853,37 +853,37 @@ paths:
           type: boolean
           default: false
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PageOfApplications"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -912,43 +912,43 @@ paths:
       summary: Get information about an application blueprint
       operationId: getApplication
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationInfo"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -985,37 +985,37 @@ paths:
           type: boolean
           default: false
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PageOfDeployments"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -1048,43 +1048,43 @@ paths:
               $ref: "#/components/schemas/Deployment"
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudQuota'
-        202:
+        '202':
           description: Deploying
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeploymentId"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -1107,43 +1107,43 @@ paths:
       summary: Get information about an existing deployment
       operationId: getDeployment
       responses:
-        200:
+        '200':
           description: Accepted
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeploymentInfo"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -1158,43 +1158,43 @@ paths:
       summary: Tear down an existing deployment
       operationId: deleteDeployment
       responses:
-        202:
+        '202':
           description: Deleting
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Success"
-        400:
+        '400':
           description: Invalid parameters or configuration
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        401:
+        '401':
           description: Authorization required
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        403:
+        '403':
           description: Permission denied
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        404:
+        '404':
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        419:
+        '419':
           description: Re-delegate credentials
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        503:
+        '503':
           description: Try again later
           content:
             application/json:
@@ -1210,7 +1210,7 @@ paths:
       summary: Return service version information
       operationId: version
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
