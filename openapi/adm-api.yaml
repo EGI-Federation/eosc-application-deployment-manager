@@ -68,8 +68,16 @@ components:
           type: string
           enum:
             - "3.x-oidc"
+            - "3.x-appcred"
+            - "3.x-password"
+          default: 3.x-oidc
         apiVersion:
           type: string
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
     KubernetesEnvironment:
       type: object
       required:
@@ -90,6 +98,11 @@ components:
           format: hostname
           description: DNS domain where the applications deployed in this environment are accessible
           example: apps.mynode.eosc-portal.eu
+        token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Token
     EoscNodeEnvironment:
       type: object
       required:
@@ -576,6 +589,71 @@ paths:
       tags:
         - Allocations
 
+    post:
+      summary: Record an environment of the user
+      operationId: recordAllocation
+      parameters:
+      - name: scope
+        in: query
+        required: false
+        schema:
+          enum:
+          - private
+          - public
+          type: string
+          description: Storage visibility scope; public allocations require admin
+            privileges
+          default: private
+          title: Scope
+        description: Storage visibility scope; public allocations require admin privileges
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Allocation"
+        required: true
+      responses:
+        '201':
+          description: Recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllocationId"
+        '400':
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '419':
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '503':
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations
+
   /allocation/{allocationId}:
     parameters:
       - name: allocationId
@@ -634,6 +712,126 @@ paths:
         - OIDC: []
       tags:
         - Allocations
+
+    put:
+      summary: Update existing environment of the user
+      operationId: updateAllocation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Allocation"
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllocationInfo"
+        '400':
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: In use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '419':
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '503':
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations
+
+    delete:
+      summary: Remove existing environment of the user
+      operationId: deleteAllocation
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Invalid parameters or configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: Authorization required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Permission denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: In use
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '419':
+          description: Re-delegate credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '503':
+          description: Try again later
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - OIDC: []
+      tags:
+        - Allocations 
 
   /applications:
     get:
@@ -1049,7 +1247,7 @@ paths:
         - Service
 info:
   title: EOSC Application Workflow Management API
-  version: 1.0.51
+  version: 1.1.0
   description: Deployment service for European Open Science Cloud nodes
   contact:
     name: EOSC
