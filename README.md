@@ -24,6 +24,7 @@ This is the [REST](https://restfulapi.net) API specification for the Application
 core service of future EOSC nodes. This API can be used to:
 
 - discover the tool blueprints available in the EOSC node
-- discover the compute resource allocations of a user in the EOSC node
+- discover the compute available resource allocations in the EOSC node for the user
+- manage (query, update, stop, delete, etc.) the allocations of the user (BYOC)
 - deploy any of the tools from the EOSC node (or from other EOSC nodes) to any of the resource allocations of the user
 - manage (query, update, stop, delete, etc.) the tool deployments of the user
