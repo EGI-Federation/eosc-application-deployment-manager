@@ -78,6 +78,15 @@ components:
           - type: string
           - type: 'null'
           title: Password
+          description: >-
+            OpenStack authentication password. For public allocations, this
+            property is omitted from responses to non-administrator users;
+            users with the administrator role may receive its value. For
+            private allocations, visibility follows the allocation's access
+            controls.
+          x-visibility-by-role:
+            administrator: returned when authorized
+            non-administrator: redacted or omitted for public allocations
     KubernetesEnvironment:
       type: object
       required:
@@ -103,6 +112,15 @@ components:
           - type: string
           - type: 'null'
           title: Token
+          description: >-
+            Kubernetes authentication token. For public allocations, this
+            property is omitted from responses to non-administrator users;
+            users with the administrator role may receive its value. For
+            private allocations, visibility follows the allocation's access
+            controls.
+          x-visibility-by-role:
+            administrator: returned when authorized
+            non-administrator: redacted or omitted for public allocations
     EoscNodeEnvironment:
       type: object
       required:
